@@ -22,4 +22,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^cfc/', include('cfc.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^recipe/$', views.recipe, name='recipe')
+]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# FIX ME ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -1,29 +1,5 @@
-<html lang="en">
-    {% extends "cookingMain/base.html" %}
-
-    {% block title %}
-        Recipe Title
-    {% endblock %}
-    
-
-    <head>
-
-        <title>Cooking with Coders</title>
-        <!-- Bootstrap Core CSS -->
-        <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Theme CSS -->
-        <link href="../../static/css/clean-blog.min.css" rel="stylesheet">
-
-        <!-- Custom Fonts -->
-        <link href="../../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        
-        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-        
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    </head>
-
-    
+{% extends "cookingMain/base.html" %}
+    {% block title %}Recipe Title{% endblock %}
     {% block body %}
         
         <!-- Post Content -->
@@ -64,18 +40,4 @@
         </article>
 
         <hr>
-        
-        <!-- jQuery -->
-        <script src="../../static/vendor/jquery/jquery.min.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-        <!-- Contact Form JavaScript -->
-        <script src="../../static/js/jqBootstrapValidation.js"></script>
-        <script src="../../static/js/contact_me.js"></script>
-
-        <!-- Theme JavaScript -->
-        <script src="../../static/js/clean-blog.min.js"></script>
 {% endblock %}
-</html>
