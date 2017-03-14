@@ -7,8 +7,8 @@ class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	name = models.CharField(blank=False, max_length=128, unique=False)
 	profile_picture = models.ImageField(upload_to='static/images/profile_pictures', default="static/images/default.jpg")
-	my_recipes = models.CharField(default=0, blank=True)
-	saved_recipes = models.CharField(default=0, blank=True)
+	my_recipes = models.CharField(default=0, blank=True, max_length=128)
+	saved_recipes = models.CharField(default=0, blank=True, max_length=128)
 
 	def __str__(self):
 		return self.user.username
