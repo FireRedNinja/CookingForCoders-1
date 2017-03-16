@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.forms import ModelChoiceField
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
@@ -23,10 +24,10 @@ class Recipe(models.Model):
 	slug = models.SlugField(blank = True, unique = True)
 	category = models.ModelChoiceField(queryset=Category.objects.all(), required=True)
 	
-	def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-		#change title to title+ID?
-        super(Recipe, self).save(*args, **kwargs)
+	# def save(self, *args, **kwargs):
+     #    self.slug = slugify(self.title)
+	# 	#change title to title+ID?
+     #    super(Recipe, self).save(*args, **kwargs)
 
 	def __str__(self):
 		return self.title
