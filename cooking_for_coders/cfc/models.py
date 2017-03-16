@@ -21,11 +21,18 @@ class Recipe(models.Model):
 	picture = models.ImageField(upload_to='static/images/recipe', blank=True)
 	rating = models.IntegerField(default=0, blank=True)
 	slug = models.SlugField(blank = True, unique = True)
+	category = models.ModelChoiceField(queryset=Category.objects.all(), required=True)
 	
 	def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
 		#change title to title+ID?
         super(Recipe, self).save(*args, **kwargs)
+
+	def __str__(self):
+		return self.title
+
+class Category(models.Model):
+	title = models.CharField(blank=False, max_length=128)
 
 	def __str__(self):
 		return self.title
