@@ -7,6 +7,7 @@ from django.forms import ModelChoiceField
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
+	accountID = models.IntegerField(unique=True, blank=)
 	name = models.CharField(blank=False, max_length=128, unique=False)
 	profile_picture = models.ImageField(upload_to='static/images/profile_pictures', default="static/images/default.jpg")
 	my_recipes = models.CharField(default=0, blank=True, max_length=128)
@@ -17,8 +18,8 @@ class UserProfile(models.Model):
 
 class Recipe(models.Model):
 	title = models.CharField(default="Recipe", blank=False, max_length=128)
-	ingredients = models.CharField(default="ingredients", blank=False, max_length=128)
-	instructions = models.CharField(default="instructions", blank=False, max_length=128)
+	ingredients = models.TextField(default="Put your ingredients here!", blank=False)
+	instructions = models.TextField(default="Type your instructions here!", blank=False)
 	picture = models.ImageField(upload_to='static/images/recipe', blank=True)
 	rating = models.IntegerField(default=0, blank=True)
 	slug = models.SlugField(blank = True, unique = True)
@@ -37,3 +38,6 @@ class Category(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class SavedRecipe(models.Model):
+    
