@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-from django.forms import ModelChoiceField
+from django.forms import forms
 
 
 class UserProfile(models.Model):
@@ -26,7 +26,7 @@ class Recipe(models.Model):
     picture = models.ImageField(upload_to='media/recipe/', blank=True)
     rating = models.IntegerField(default=0, blank=True)
     slug = models.SlugField()
-    category = models.ModelChoiceField(queryset=Category.objects.all(), required=True)
+    category = models.ForeignKey(Category)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
