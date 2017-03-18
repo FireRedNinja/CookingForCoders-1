@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from registration.backends.simple.views import RegistrationView
 from datetime import datetime
 from cfc.models import Recipe, UserProfile
-from cfc.forms import 
+from cfc.forms import
 
 
 

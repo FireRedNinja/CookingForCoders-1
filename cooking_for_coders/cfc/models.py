@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-from django.forms import forms
+
 
 
 class UserProfile(models.Model):
@@ -16,6 +16,13 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Category(models.Model):
+    title = models.CharField(blank=False, max_length=128, unique=True)
+
+    def __str__(self):
+        return self.title
 
 
 class Recipe(models.Model):
@@ -37,15 +44,10 @@ class Recipe(models.Model):
         return self.title
 
 
-class Category(models.Model):
-    title = models.CharField(blank=False, max_length=128, unique=True)
-
-    def __str__(self):
-        return self.title
-
-
 class SavedRecipe(models.Model):
     recipe = models.ForeignKey(Recipe)
+    user  = models.ForeignKey(UserProfile)
+    category_title = models.ForeignKey(Recipe)
 
     def __str__(self):
         return self.recipe
