@@ -47,7 +47,7 @@ class Recipe(models.Model):
 class SavedRecipe(models.Model):
     recipe = models.ForeignKey(Recipe)
     user  = models.ForeignKey(UserProfile)
-    category_title = models.ForeignKey(Recipe)
+
 
     def __str__(self):
         return self.recipe
