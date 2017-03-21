@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from registration.backends.simple.views import RegistrationView
 from datetime import datetime
 from cfc.models import Recipe, UserProfile
 #from cfc.forms import
@@ -38,6 +37,3 @@ def index(request):
 # def savedRecipies(request):
 #     return render(request, 'cookingMain/savedRecipes.html', {})
 #
-# class MyRegistrationView(RegistrationView):
-#     def get_success_url(self, user):
-#         return '/cfc/'

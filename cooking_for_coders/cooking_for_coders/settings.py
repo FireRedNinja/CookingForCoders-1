@@ -144,4 +144,4 @@ LOGIN_REDIRECT_URL = '/cfc/'
 
 # The page users are directed to if they are not logged in,
 # and are trying to access pages requiring authentication
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/cfc/'
