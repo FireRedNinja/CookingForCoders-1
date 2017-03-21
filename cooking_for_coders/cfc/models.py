@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     accountID = models.IntegerField(unique=True, blank=False)
@@ -21,6 +20,9 @@ class UserProfile(models.Model):
 class Category(models.Model):
     title = models.CharField(blank=False, max_length=128, unique=True)
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.title
 
@@ -32,7 +34,7 @@ class Recipe(models.Model):
     instructions = models.TextField(default="Type your instructions here!", blank=False)
     picture = models.ImageField(upload_to='media/recipe/', blank=True)
     rating = models.IntegerField(default=0, blank=True)
-    slug = models.SlugField()
+    slug = models.SlugField(allow_unicode=True, unique=True)
     category = models.ForeignKey(Category)
 
     def save(self, *args, **kwargs):
@@ -46,7 +48,7 @@ class Recipe(models.Model):
 
 class SavedRecipe(models.Model):
     recipe = models.ForeignKey(Recipe)
-    user  = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile)
 
 
     def __str__(self):
