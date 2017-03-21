@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
@@ -26,6 +27,12 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+class DateTime(models.Model):
+    datetime = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return unicode(self.datetime)
+
 
 class Recipe(models.Model):
     title = models.CharField(default="Recipe", blank=False, max_length=128)
@@ -34,8 +41,10 @@ class Recipe(models.Model):
     instructions = models.TextField(default="Type your instructions here!", blank=False)
     picture = models.ImageField(upload_to='media/recipe/', blank=True)
     rating = models.IntegerField(default=0, blank=True)
-    slug = models.SlugField(allow_unicode=True, unique=True)
+    created = models.ForeignKey(DateTime)
+    slug = models.SlugField(default='')
     category = models.ForeignKey(Category)
+    #user_created = models.ForeignKey(User)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
