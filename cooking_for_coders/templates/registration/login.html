@@ -1,16 +1,28 @@
 {% extends 'cookingMain/base.html' %}
-
-
 {% block body %}
-    <h1>Login</h1>
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Log in" />
-        <input type="hidden" name="next" value="{{ next }}" />
-    </form>
-    <p>
-    Not a member?
-    <a href="{% url 'registration_register' %}">Register</a>
-    </p>
+<div align="center">
+    <h2>Login</h2>
+	<form role="form" method="post" action=".">
+		{% csrf_token %}
+		<label for="inputUsername" class="sr-only">Username</label>
+		<br/>
+		<input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus/>
+		<br/>
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required autofocus/>
+		<a href="#" class="nav-link">Forgot Password?</a>
+		<br/>
+		<p class="lead">
+			<input class="btn btn-lg btn-secondary" type="submit" value="Login"/>
+		</p>
+	</form>
+	<div class="mastfoot">
+		<div class="inner">
+            <p>Not a member?    
+                <a class="nav-link" href="{% url 'registration_register' %}">Register!</a></p>
+		</div>
+    </div>
+</div>
 {% endblock %}
+
+    

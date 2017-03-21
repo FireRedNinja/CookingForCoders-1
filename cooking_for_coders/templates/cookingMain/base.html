@@ -14,13 +14,13 @@
         <title>{% block title %}Cooking For Coders{% endblock %}</title>
 
         <!-- Bootstrap core CSS -->
-        <link href={% static 'vendor/bootstrap/css/bootstrap.min.css' %} rel="stylesheet">
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href={% static 'css/clean-blog.min.css' %} rel="stylesheet">
+        <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
         
         <!-- Custom Fonts -->
-        <link href={% static 'vendor/font-awesome/css/font-awesome.min.css' %} rel="stylesheet" type="text/css">
+        <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}"s rel="stylesheet" type="text/css">
         
         <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
         
@@ -51,10 +51,10 @@
                             <a href="about.html">About</a>
                         </li>
                         <li>
-                            <a href="post.html">Sample Post</a>
+                            <a href="{% url 'registration_register' %}">Register</a>
                         </li>
                         <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="{% url 'auth_login' %}">Login</a>
                         </li>
                     </ul>
                 </div>
