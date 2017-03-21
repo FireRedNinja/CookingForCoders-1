@@ -27,22 +27,17 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-class DateTime(models.Model):
-    datetime = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return unicode(self.datetime)
-
 
 class Recipe(models.Model):
     title = models.CharField(default="Recipe", blank=False, max_length=128)
     recipeID = models.IntegerField(unique=True, blank=False)
     ingredients = models.TextField(default="Put your ingredients here!", blank=False)
     instructions = models.TextField(default="Type your instructions here!", blank=False)
+    description = models.CharField(default="Put a short description here!", max_length=64, blank=False)
     picture = models.ImageField(upload_to='media/recipe/', blank=True)
     rating = models.IntegerField(default=0, blank=True)
-    created = models.ForeignKey(DateTime)
-    slug = models.SlugField(default='')
+    created = models.DateTimeField(default=timezone.now)
+    slug = models.SlugField()
     category = models.ForeignKey(Category)
     #user_created = models.ForeignKey(User)
 
