@@ -5,15 +5,6 @@
     Cooking For Coders
 {% endblock %}
 
-<head>
-
-    <!-- Bootstrap Core CSS -->
-    <link href={% static 'vendor/bootstrap/css/bootstrap.min.css' %} rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href={% static 'css/heroic-features.css' %} rel="stylesheet">
-
-</head>
 
 {% block body %}
 
@@ -97,60 +88,37 @@
     </div>
     <!-- /.row -->
 
-    <!-- Page Features -->
+       <!-- Page Features -->
     <div class="row text-center">
+        {% if top_recipes %} {% for recipe in top_recipes %}
 
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
+        <a href="#">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
+                    <div class="caption">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
+        </a>
+        {% endfor %} {% else %}
+        <a href="#">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature Label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
 
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+        {% endif %}
 
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+    </div>
 
     </div>
     <!-- /.row -->

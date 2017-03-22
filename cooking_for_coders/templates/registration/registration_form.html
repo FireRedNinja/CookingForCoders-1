@@ -10,34 +10,34 @@
 
 {% block body %}
 <div class="container" align="center">
-	<h2 class="form-signin-heading">Register</h2>
-	
-	<form role="form" method="post" action=".">
-		{% csrf_token %}
-		<div class="from-group">
-		<p class="lead">
-			<input class="form-control" id="id_username" maxlength="30" name="username" type="text" placeholder="Username" required autofocus/>
-			<span>Username must be at least 8 characters</span>
-		</p>
-		<p class="lead">
-			<input class="form-control" id="id_password1" name="password1" type="password" placeholder="Password" required autofocus/>
-		</p>
-		<p class="lead">
-			<input class="form-control" id="id_password2" name="password2" type="password" placeholder="Password Confirmation" required autofocus/>
-			<span class="helptext">
+    <h2 class="form-signin-heading">Register</h2>
+
+    <form role="form" method="post" action=".">
+        {% csrf_token %}
+        <div class="from-group">
+            <p class="lead">
+                <input class="form-control" id="id_username" maxlength="30" name="username" type="text" placeholder="Username" required autofocus/>
+                <span>Username must be at least 8 characters</span>
+            </p>
+            <p class="lead">
+                <input class="form-control" id="id_password1" name="password1" type="password" placeholder="Password" required autofocus/>
+            </p>
+            <p class="lead">
+                <input class="form-control" id="id_password2" name="password2" type="password" placeholder="Password Confirmation" required autofocus/>
+                <span class="helptext">
 				Enter the same password as before for verification.
 			</span>
-		</p>
-		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
-	</form>
-    
+            </p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
     <br>
     <div class="mastfoot">
-		<div class="inner">
-            <p>Already signed up?  
+        <div class="inner">
+            <p>Already signed up?
                 <a class="nav-link" href="{% url 'auth_login' %}">Login</a></p>
-		</div>
+        </div>
     </div>
 </div>
 {% endblock %}
