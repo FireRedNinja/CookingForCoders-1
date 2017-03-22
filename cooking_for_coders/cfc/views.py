@@ -22,12 +22,12 @@ def index(request):
 
     return render(request, 'cookingMain/index.html', context_dict)
 
-def recipe(request):
+def recipe(request, recipe_id):
     try:
-        recipe = Recipe.objects.get(slug=recipe_recipeID_slug)
+        recipe = Recipe.objects.get(id=recipe_id)
     except Recipe.DoesNotExist:
         recipe = None
-    return render(request, 'cookingMain/recipe.html', {})
+    return render(request, 'cookingMain/recipe.html', {'recipe':recipe})
 
 def profile(request):
     return render(request, 'cookingMain/profile.html', {})
