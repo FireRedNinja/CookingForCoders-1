@@ -22,24 +22,24 @@ def index(request):
 
     return render(request, 'cookingMain/index.html', context_dict)
 
-# def recipe(request):
-#     try:
-#         recipe = Recipe.objects.get(slug=recipe_id_slug)
-#     except Recipe.DoesNotExist:
-#         recipe = None
-#     return render(request, 'cookingMain/recipe.html', {})
-#
-# def profile(request):
-#     return render(request, 'cookingMain/profile.html', {})
-#
-# def splash(request):
-#     return render(request, 'cookingMain/splash.html', {})
-#
-# def trendingRecipies(request):
-#     top_recipes = Recipe.objects.order_by('-rating')[:10]
-#     # trending recipes (can't do rn)
-#     return render(request, 'cookingMain/trendingRecipes.html', {})
-#
-# def savedRecipies(request):
-#     return render(request, 'cookingMain/savedRecipes.html', {})
-#
+def recipe(request):
+    try:
+        recipe = Recipe.objects.get(slug=recipe_id_slug)
+    except Recipe.DoesNotExist:
+        recipe = None
+    return render(request, 'cookingMain/recipe.html', {})
+
+def profile(request):
+    return render(request, 'cookingMain/profile.html', {})
+
+def splash(request):
+    return render(request, 'cookingMain/splash.html', {})
+
+def trendingRecipies(request):
+    top_recipes = Recipe.objects.order_by('-rating')[:10]
+    # trending recipes (can't do rn)
+    return render(request, 'cookingMain/trendingRecipes.html', {})
+
+def savedRecipies(request):
+    return render(request, 'cookingMain/savedRecipes.html', {})
+
