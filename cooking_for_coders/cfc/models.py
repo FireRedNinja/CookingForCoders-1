@@ -37,7 +37,7 @@ class Recipe(models.Model):
     picture = models.ImageField(upload_to='media/recipe/', blank=True)
     rating = models.IntegerField(default=0, blank=True)
     created = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField()
+    slug = models.SlugField(blank=True)
     category = models.ForeignKey(Category)
     #user_created = models.ForeignKey(User)
 
