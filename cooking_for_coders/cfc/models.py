@@ -30,7 +30,7 @@ class Category(models.Model):
 
 class Recipe(models.Model):
     title = models.CharField(default="Recipe", blank=False, max_length=128)
-    recipeID = models.IntegerField(unique=True, blank=False)
+    recipeID = models.IntegerField(blank=False)
     ingredients = models.TextField(default="Put your ingredients here!", blank=False)
     instructions = models.TextField(default="Type your instructions here!", blank=False)
     description = models.CharField(default="Put a short description here!", max_length=64, blank=False)
