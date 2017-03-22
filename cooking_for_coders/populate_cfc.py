@@ -19,11 +19,11 @@ def populate():
             ,"description":"Moist pockets of juicy, spicy courgette", "picture": "recipe/pockets.jpg", "rating": "3", "category": "Vegetarian"}
     ]
 
-    main_rec = [
+    lunch_rec = [
         {"title": "Spicy Courgette Python Pockets", "recipeID": "123",
          "ingredients": "2 Courgettes, 1tbsp Chilli Powder, 1 Chilli, 200g Grated Cheddar",
          "instructions": "1. Slice courgettes in half \n 2. Finely slice Chilli \n 3. Put chilli on courgettes, add chilli powder \n 4. Cook in oven for 15mins at 200degreesC"
-            ,"description":"Moist pockets of juicy, spicy courgette", "picture": "recipe/pockets.jpg", "rating": "3",  "category": "Main"}
+            ,"description":"Moist pockets of juicy, spicy courgette", "picture": "recipe/pockets.jpg", "rating": "3",  "category": "Lunch"}
     ]
 
     dessert_rec = [
@@ -35,7 +35,7 @@ def populate():
     ]
 
     cats = {"Vegetarian": {"recipe": vegetarian_rec},
-            "Mains": {"recipe": main_rec},
+            "Lunch": {"recipe": lunch_rec},
             "Dessert": {"recipe": dessert_rec}}
 
     for cat, cat_data in cats.items():
@@ -51,8 +51,7 @@ now = timezone.now()
 
 
 def add_rec(cat, title, recipeID, ingredients, instructions, description, picture, rating, category):
-    r = Recipe.objects.get_or_create(category=cat, title=title, recipeID=recipeID, ingredients=ingredients, instructions=instructions, description=description)[0]
-
+    r = Recipe.objects.get_or_create(category=cat, title=title, recipeID=recipeID, ingredients=ingredients, instructions=instructions, description = description)[0]
     r.picture=picture
     r.rating=rating
     r.save()
