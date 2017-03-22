@@ -42,12 +42,12 @@ class Recipe(models.Model):
     #user_created = models.ForeignKey(User)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.recipeID)
         #change title to title+ID?
         super(Recipe, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return self.recipeID
 
 
 class SavedRecipe(models.Model):

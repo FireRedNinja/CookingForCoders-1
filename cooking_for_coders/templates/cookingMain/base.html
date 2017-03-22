@@ -14,10 +14,10 @@
         <title>{% block title %}Cooking For Coders{% endblock %}</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
 
         <!-- Custom styles for this template -->
-        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+        <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css">
         
         <!-- Custom Fonts -->
         <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}"s rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@
                         <span class="sr-only">Toggle navigation</span>
                         Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">Cooking For Coders</a>
+                    <a class="navbar-brand" href="{% url 'index' %}">Cooking For Coders</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
