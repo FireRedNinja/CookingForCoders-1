@@ -1,0 +1,11 @@
+span {
+    font-size: small;
+}
+
+button{
+    align-self: center;
+}
+
+p,a {
+    font-size: large;
+}

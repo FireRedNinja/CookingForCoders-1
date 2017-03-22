@@ -1,20 +1,33 @@
 {% extends 'cookingMain/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link href="{% static 'css/login-reg.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
-<div align="center">
+
+
+<div class="container" align="center">
     <h2>Login</h2>
+    
 	<form role="form" method="post" action=".">
 		{% csrf_token %}
-		<label for="inputUsername" class="sr-only">Username</label>
-		<br/>
-		<input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus/>
-		<br/>
-		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required autofocus/>
+        
+        <p class="lead">
+            <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus/>
+        </p>
+        
+        <p class="lead">
+            <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required autofocus/>
+        </p>
+        
 		<a href="#" class="nav-link">Forgot Password?</a>
-		<br/>
-		<p class="lead">
-			<input class="btn btn-lg btn-secondary" type="submit" value="Login"/>
-		</p>
+        
+        <p class="lead">
+			<input class="btn btn-primary" type="submit" value="Login"/>
+        </p>
+        
 	</form>
 	<div class="mastfoot">
 		<div class="inner">
@@ -24,5 +37,3 @@
     </div>
 </div>
 {% endblock %}
-
-    
