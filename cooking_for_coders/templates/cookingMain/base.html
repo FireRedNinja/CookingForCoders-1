@@ -53,12 +53,13 @@
                         <li>
                             <a href="{% url 'index' %}">Home</a>
                         </li>
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
                         {% if user.is_authenticated %}
                             <li>
-                                <a href="{% url 'auth_logout' %}?next=/rango/">Logout</a>
+                                <a href="#">Create a Recipe</a>
+                            </li>
+                        
+                            <li>
+                                <a href="{% url 'auth_logout' %}?next=/cfc/">Logout</a>
                             </li>
                         {% else %}
                             <li>
