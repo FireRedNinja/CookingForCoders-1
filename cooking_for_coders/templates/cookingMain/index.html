@@ -80,9 +80,9 @@
 
     <!-- Page Features -->
     <div class="row text-center">
+        {% if newest_recipes %} {% for recipe in newest_recipes %}
 
-        {% if false %} {% for recipe in top_recipes %}
-        <a href="#">
+        <a href="/cfc/recipe/{{ recipe.id }}">
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
                     <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
@@ -93,7 +93,7 @@
                 </div>
             </div>
         </a>
-        {% endfor %} {% else %} {% with 'aaaa' as list %} {% for i in list %}
+        {% endfor %} {% else %}
         <a href="#">
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
@@ -105,7 +105,8 @@
                 </div>
             </div>
         </a>
-        {% endfor %} {% endwith %} {% endif %}
+
+        {% endif %}
 
     </div>
     <!-- /.row -->
