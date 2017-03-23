@@ -23,8 +23,48 @@
                 </div>
             </div>
         </header>
+
+
+
+
 <!-- Page Content -->
 <div class="container">
+
+
+
+     <!-- Navigation -->
+        <nav class="navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        Menu <i class="fa fa-bars"></i>
+                    </button>
+                <a class="navbar-brand" href="">Home</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{% url 'index' %}">Home</a>
+                        </li>
+                        {% if category_list %}
+                        {% for category in category_list %}
+
+                        <li>
+                            <a href="/cfc/category/{{ category.slug }}">{{ category.title }}</a>
+                        </li>
+                        {% endfor %}{% endif %}
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
     <hr>
 
     <!-- Title -->
@@ -34,7 +74,7 @@
         </div>
     </div>
     <!-- /.row -->
-
+  <hr>
     <!-- Page Features -->
     <div class="row text-center">
         {% if top_recipes %} {% for recipe in top_recipes %}
@@ -77,10 +117,139 @@
         </div>
     </div>
     <!-- /.row -->
-
+  <hr>
     <!-- Page Features -->
     <div class="row text-center">
         {% if newest_recipes %} {% for recipe in newest_recipes %}
+
+        <a href="/cfc/recipe/{{ recipe.id }}">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
+                    <div class="caption">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %} {% else %}
+        <a href="#">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature Label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {% endif %}
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+<!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="/cfc/category/vegetarian/"><h3>Vegetarian Recipes</h3></a>
+        </div>
+    </div>
+    <!-- /.row -->
+  <hr>
+    <!-- Page Features -->
+    <div class="row text-center">
+        {% if veg_recipes %} {% for recipe in veg_recipes %}
+
+        <a href="/cfc/recipe/{{ recipe.id }}">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
+                    <div class="caption">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %} {% else %}
+        <a href="#">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature Label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {% endif %}
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+<!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="/cfc/category/lunch/"><h3>Lunch Recipes</h3></a>
+        </div>
+    </div>
+    <!-- /.row -->
+  <hr>
+    <!-- Page Features -->
+    <div class="row text-center">
+        {% if lunch_recipes %} {% for recipe in lunch_recipes %}
+
+        <a href="/cfc/recipe/{{ recipe.id }}">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
+                    <div class="caption">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %} {% else %}
+        <a href="#">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature Label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {% endif %}
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+<!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="/cfc/category/dessert/"><h3>Dessert Recipes</h3></a>
+        </div>
+    </div>
+    <!-- /.row -->
+  <hr>
+    <!-- Page Features -->
+    <div class="row text-center">
+        {% if dessert_recipes %} {% for recipe in dessert_recipes %}
 
         <a href="/cfc/recipe/{{ recipe.id }}">
             <div class="col-md-3 col-sm-6 hero-feature">

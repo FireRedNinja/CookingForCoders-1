@@ -43,11 +43,11 @@ def populate():
         for r in cat_data["recipe"]:
             add_rec(c, r["title"], r["recipeid"], r["ingredients"], r["instructions"], r["description"], r["picture"], r["rating"], r["category"])
 
-    for c in Category.objects.all():
-        for r in Recipe.objects.filter(category=c):
-            print("- {0} - {1}".format(str(c), str(r)))
+    # for c in Category.objects.all():
+    #     for r in Recipe.objects.filter(category=c):
+    #         print("- {0} - {1}".format(str(c), str(r)))
 
-now = timezone.now()
+
 
 
 def add_rec(cat, title, recipeid, ingredients, instructions, description, picture, rating, category):

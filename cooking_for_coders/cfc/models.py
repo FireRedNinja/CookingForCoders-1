@@ -20,6 +20,11 @@ class UserProfile(models.Model):
 
 class Category(models.Model):
     title = models.CharField(blank=False, max_length=128, unique=True)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Category, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -37,7 +42,7 @@ class Recipe(models.Model):
     picture = models.ImageField(upload_to='media/recipe/', blank=True)
     rating = models.IntegerField(default=0, blank=True)
     created = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(unique=True)
     category = models.ForeignKey(Category)
     #user_created = models.ForeignKey(User)
 
