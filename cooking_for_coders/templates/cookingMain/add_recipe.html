@@ -1,0 +1,90 @@
+{% extends "cookingMain/base.html" %}
+{% load staticfiles %}
+
+{% block title %} Cooking For Coders {% endblock %}
+
+
+
+{% block body %}
+
+            <!-- Set your background image for this header on the line below. -->
+        <header class="intro-header" style="background-image: url('{{ MEDIA_URL }}/images/splash.jpeg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            {% if user.is_authenticated %}
+                                <h1>Create your recipe!</h1>
+                            {% else %}
+                                <h1>Welcome</h1>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+
+
+<!-- Page Content -->
+<div class="container">
+
+
+
+     <!-- Navigation -->
+        <nav class="navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        Menu <i class="fa fa-bars"></i>
+                    </button>
+                <a class="navbar-brand" href="">Home</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{% url 'index' %}">Home</a>
+                        </li>
+                        {% if category_list %}
+                        {% for category in category_list %}
+
+                        <li>
+                            <a href="/cfc/category/{{ category.slug }}">{{ category.title }}</a>
+                        </li>
+                        {% endfor %}{% endif %}
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+    <hr>
+    {% if user.is_authenticated %}
+        <form id="recipe_form" method="post" action="/cookingMain/add_recipe/">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+
+            {% endfor %}
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+            <input type="submit" name="submit" value="Create Recipe" /> </form>
+
+    {% else %}
+        <h1>You shouldn't be here...</h1>
+<h2>Login before you create a recipe!</h2>
+{% endif %}
+
+</div>
+
+{% endblock %}

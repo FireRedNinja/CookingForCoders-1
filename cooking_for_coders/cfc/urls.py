@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^recipe/(?P<recipe_id>[\w\-]+)/$', views.recipe, name='recipe'),
     url(r'^splash/$', views.splash, name='splash'),
     url(r'^profile/$', views.profile, name='profile'),
-    url(r'^register/$', views.register, name='register'),
+    url(r'^add_recipe/$', views.add_recipe, name='add_recipe'),
 
 
 ]

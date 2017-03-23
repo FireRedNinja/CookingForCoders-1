@@ -48,8 +48,6 @@ def populate():
     #         print("- {0} - {1}".format(str(c), str(r)))
 
 
-
-
 def add_rec(cat, title, ingredients, instructions, description, picture, rating, category):
     r = Recipe.objects.get_or_create(category=cat, title=title, ingredients=ingredients, instructions=instructions, description=description)[0]
     r.picture=picture

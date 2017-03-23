@@ -51,7 +51,7 @@ class Recipe(models.Model):
         super(Recipe, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.recipeID
+        return self.title
 
 
 class SavedRecipe(models.Model):
