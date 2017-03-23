@@ -9,7 +9,7 @@ from django.template.defaultfilters import slugify
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     accountID = models.AutoField(primary_key=True)
-    profile_picture = models.ImageField(upload_to='static/images/profile_pictures', default="static/images/default.jpg")
+    picture = models.ImageField(upload_to='profile_images', blank=True)
     my_recipes = models.CharField(default=0, blank=True, max_length=128)
     saved_recipes = models.CharField(default=0, blank=True, max_length=128)
 

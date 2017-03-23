@@ -20,13 +20,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from registration.backends.simple.views import RegistrationView
 from django import forms
+
+
 # Create a new class that redirects the user to the index page,
 #if successful at logging
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return '/cfc/'
 
-	form_class =  UserForm()
+#form_class =  UserForm()
+
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
