@@ -66,51 +66,8 @@
         </nav>
 
     <hr>
-    {% if user.is_authenticated %}
-        <!-- Title -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Saved Recipies</h3>
-            </div>
-        </div>
-        <!-- /.row -->
 
-            <!-- Page Features -->
-        <div class="row text-center">
-            {% if top_recipes %} {% for recipe in top_recipes %}
 
-            <a href="/cfc/recipe/{{ recipe.recipeID }}">
-                <div class="col-md-3 col-sm-6 hero-feature">
-                    <div class="thumbnail">
-                        <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
-                        <div class="caption">
-                            <h3>{{ recipe.title }}</h3>
-                            <p>{{ recipe.description }}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            {% endfor %} {% else %}
-            <a href="#">
-                <div class="col-md-3 col-sm-6 hero-feature">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
-                        <div class="caption">
-                            <h3>Feature Label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            {% endif %}
-
-        </div>
-        <!-- /.row -->
-
-        <hr>
-    
-    {% endif %}
 
     <!-- Title -->
     <div class="row">
