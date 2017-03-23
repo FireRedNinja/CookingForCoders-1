@@ -79,7 +79,7 @@
         <div class="row text-center">
             {% if top_recipes %} {% for recipe in top_recipes %}
 
-            <a href="/cfc/recipe/{{ recipe.id }}">
+            <a href="/cfc/recipe/{{ recipe.recipeID }}">
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
                         <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
