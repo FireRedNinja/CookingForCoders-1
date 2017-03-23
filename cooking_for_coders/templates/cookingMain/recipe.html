@@ -81,8 +81,19 @@
 
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="section-heading">
                         <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.rating }}/5</h1>
                         <span><b>recipe by {{recipe.author}}</b></span>
+                            Rate
+                        <select id="example"> <!-- now hidden -->
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+
+                        </div>
                         <p>{{ recipe.description }}</p>
 
                         
@@ -92,12 +103,19 @@
                         <h2 class="section-heading">Directions</h2>
 
                         <p>{{ recipe.instructions }}</p>
+                        <br>
+                        <br>
                     </div>
                 </div>
+                
+                
             </div>
         </article>
+        
 
         <hr>
 
 
 {% endblock %}
+
+
