@@ -72,7 +72,7 @@ def add_recipe(request):
         form = RecipeForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+            form.save(commit=False)
             return index(request)
         else:
             print(form.errors)
