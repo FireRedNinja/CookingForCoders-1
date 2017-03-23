@@ -80,6 +80,7 @@ def add_recipe(request):
 
         if form.is_valid():
             Recipe = form.save(commit=False)
+            Recipe.author = request.user.username
             Recipe.save()
             return index(request)
         else:

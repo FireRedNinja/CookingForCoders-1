@@ -15,7 +15,7 @@ class RecipeForm(forms.ModelForm):
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     category = forms.ModelChoiceField(queryset=Category.objects.all().order_by('title'))
     picture = forms.ImageField(required=True)
-
+    author = forms.CharField(max_length=128, required=False, widget=forms.HiddenInput())
     class Meta:
         # Provide an association between the ModelForm and a model
         model = Recipe
