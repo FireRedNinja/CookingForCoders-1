@@ -119,6 +119,7 @@ class MyRegistrationView(RegistrationView):
 
 @login_required
 def profile(request, username):
+    context_dict = {}
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
@@ -126,6 +127,12 @@ def profile(request, username):
 
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form = UserProfileForm({'picture': userprofile.picture})
+
+    try:
+        my_recipes = Recipe.objects.filter(author=username)
+    except Recipe.DoesNotExist:
+        context_dict['my_recipes'] = None
+
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
@@ -135,7 +142,9 @@ def profile(request, username):
         else:
             print(form.errors)
 
-    return render(request, 'cookingMain/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+    context_dict = {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'my_recipes':my_recipes}
+
+    return render(request, 'cookingMain/profile.html', context_dict)
 
 
 def trendingRecipies(request):
