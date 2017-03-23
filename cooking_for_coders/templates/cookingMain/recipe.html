@@ -3,12 +3,13 @@
 
 {% block head %}
     <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/stylish-portfolio.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
     {% block title %}{{ recipe.title }}{% endblock %}
-    {% block body %}
+{% block body %}
 
-             <!-- Navigation -->
-        <nav class="navbar-inverse navbar-fixed-bottom">
+    <!-- Navigation -->
+    <nav class="navbar-inverse navbar-fixed-bottom">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header page-scroll">
@@ -52,15 +53,38 @@
                 </div>
             </div>
         </header>
+
+
+        <div class="container">
+
+                <div class="col-lg-10 col-lg-offset-0">
+
+                        <div class="col-md-6" style="">
+                            <div class="portfolio-item">
+
+                                    <img class="img-portfolio img-responsive" src="{{ MEDIA_URL }}{{ recipe.picture }}">
+
+                            </div>
+                        </div>
+
+                </div>
+                <!-- /.col-lg-10 -->
+
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+
         
         <!-- Post Content -->
         <article>
             <div class="container">
+
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        <h1 class="section-heading">{{ recipe.title }}</h1>
+                        <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.rating }}/5</h1>
                         
                         <p>{{ recipe.description }}</p>
+
                         
                         <h2 class="section-heading">Ingredients</h2>
                         <p>{{ recipe.ingredients }}</p>
@@ -74,4 +98,6 @@
         </article>
 
         <hr>
+
+
 {% endblock %}
