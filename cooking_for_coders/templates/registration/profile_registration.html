@@ -1,0 +1,58 @@
+{% extends 'cookingMain/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link href="{% static 'css/login-reg.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+            <header class="intro-header" style="background-image: url('{{ MEDIA_URL }}/images/splash.jpeg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            <h1>Hello, {{ user.username }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+<div class="container" align="center">
+    <h2>Login</h2>
+    
+	<form role="form" method="post" action=".">
+		{% csrf_token %}
+        
+        <p class="lead">
+            <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus/>
+        </p>
+        
+        <p class="lead">
+            <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required autofocus/>
+        </p>
+        
+		<a href="#" class="nav-link">Forgot Password?</a>
+        
+        <p class="lead">
+			<input class="btn btn-primary" type="submit" value="Login"/>
+        </p>
+        
+	</form>
+	<div class="mastfoot">
+		<div class="inner">
+            <p>Not a member?    
+                <a class="nav-link" href="{% url 'registration_register' %}">Register!</a></p>
+		</div>
+    </div>
+
+<form method="post" action="." enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+</div>
+{% endblock %}

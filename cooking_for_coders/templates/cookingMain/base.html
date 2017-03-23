@@ -57,7 +57,11 @@
                             <li>
                                 <a href="/cfc/add_recipe/">Create a Recipe</a>
                             </li>
-                        
+
+                            <li>
+                            <a href="{% url 'profile' user.username %}">Profile</a>
+                            </li>
+
                             <li>
                                 <a href="{% url 'auth_logout' %}?next=/cfc/">Logout</a>
                             </li>

@@ -1,4 +1,11 @@
-from django.shortcuts import render
+from django.conf.urls import url
+from django.shortcuts import render, redirect
+from registration.backends.simple.views import RegistrationView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 from cfc.models import Recipe, UserProfile, Category
@@ -73,12 +80,53 @@ def add_recipe(request):
     return render(request, 'cookingMain/add_recipe.html', {'form': form})
 
 
-def profile(request):
-    return render(request, 'cookingMain/profile.html', {})
-
-
 def splash(request):
     return render(request, 'cookingMain/splash.html', {})
+
+
+@login_required
+def register_profile(request):
+    form = UserProfileForm()
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+
+            return redirect('index')
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form}
+
+    return render(request, 'registration/profile_registration.html', context_dict)
+
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return url('register_profile')
+
+
+@login_required
+def profile(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return redirect('index')
+
+    userprofile = UserProfile.objects.get_or_create(user=user)[0]
+    form = UserProfileForm({'picture': userprofile.picture})
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('profile', user.username)
+        else:
+            print(form.errors)
+
+    return render(request, 'cookingMain/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form})
 
 
 def trendingRecipies(request):

@@ -7,191 +7,76 @@
 
 
 {% block body %}
+            <!-- Set your background image for this header on the line below. -->
+        <header class="intro-header" style="background-image: url('{{ MEDIA_URL }}/images/Dinner2.jpeg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="post-heading">
+                            {% if user.is_authenticated %}
+                                <h1>Welcome {{ user.username }}</h1>
+                            {% else %}
+                                <h1>Welcome</h1>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-     <!-- Page Content -->
     <div class="container">
-        <hr>
 
-        <!-- Title -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Saved Recipies</h3>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Page Features -->
-        <div class="row text-center">
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
+         <!-- Navigation -->
+        <nav class="navbar-inverse navbar-fixed-bottom">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        Menu <i class="fa fa-bars"></i>
+                    </button>
+                <a class="navbar-brand" href="">Home</a>
                 </div>
-            </div>
 
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{% url 'index' %}">Home</a>
+                        </li>
+                        {% if category_list %}
+                        {% for category in category_list %}
+
+                        <li>
+                            <a href="/cfc/category/{{ category.slug }}">{{ category.title }}</a>
+                        </li>
+                        {% endfor %}{% endif %}
+
+                    </ul>
                 </div>
+                <!-- /.navbar-collapse -->
             </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Title -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>Trending Recipes</h3>
-        </div>
-    </div>
-    <!-- /.row -->
-
-       <!-- Page Features -->
-    <div class="row text-center">
-        {% if top_recipes %} {% for recipe in top_recipes %}
-
-        <a href="#">
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
-                    <div class="caption">
-                        <h3>{{ recipe.title }}</h3>
-                        <p>{{ recipe.description }}</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-        {% endfor %} {% else %}
-        <a href="#">
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-
-        {% endif %}
-
-    </div>
-
-    </div>
-    <!-- /.row -->
+            <!-- /.container -->
+        </nav>
 
     <hr>
 
-    <!-- Title -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>New Recipies</h3>
-        </div>
-    </div>
-    <!-- /.row -->
-
-    <!-- Page Features -->
-    <div class="row text-center">
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Feature Label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+        <h1>{{selecteduser.username}} Profile</h1>
+        <img src="{{ MEDIA_URL }}{{userprofile.picture }}"
+             width="300"
+             height="300"
+             alt="{{selecteduser.username}}" />
+        <br/> <div>
+        {% if selecteduser.username == user.username %}
+            <form method="post" action="." enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Update" />
+            </form> {% else %}
+        {% endif %} </div>
+        <div id="edit_profile"></div>
 
     </div>
-    <!-- /.row -->
-
-    <hr>
-    </div>
+       <hr></br></br>
 
 {% endblock %}
