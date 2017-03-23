@@ -14,11 +14,12 @@ class RecipeForm(forms.ModelForm):
     created = forms.DateTimeField(widget=forms.HiddenInput(), initial=timezone.now)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     category = forms.ModelChoiceField(queryset=Category.objects.all().order_by('title'))
+    picture = forms.ImageField(required=True)
 
     class Meta:
         # Provide an association between the ModelForm and a model
         model = Recipe
-        fields = ('picture', 'title', 'ingredients', 'instructions', 'description', 'category')
+        fields = ('title', 'picture', 'description', 'ingredients', 'instructions', 'category')
 
         # What fields do we want to include in our form?
         # This way we dont need every field in the model present

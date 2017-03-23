@@ -23,6 +23,7 @@ def index(request):
         veg_recipes = Recipe.objects.filter(category__id=2)[:4]
         snack_recipes = Recipe.objects.filter(category__id=1)[:4]
         dessert_recipes = Recipe.objects.filter(category__id=3)[:4]
+        main_recipes = Recipe.objects.filter(category__id=4)[:4]
         category_list = Category.objects.order_by('title')
         # # top 4 rated (can't do rn)
         # visitor_cookie_handler(request)
@@ -30,6 +31,7 @@ def index(request):
         context_dict['newest_recipes'] = newest_recipes
         context_dict['veg_recipes'] = veg_recipes
         context_dict['snack_recipes'] = snack_recipes
+        context_dict['main_recipes'] = main_recipes
         context_dict['dessert_recipes'] = dessert_recipes
         context_dict['category_list'] = category_list
 
@@ -74,13 +76,14 @@ def add_recipe(request):
 	form = RecipeForm()
 
 	if request.method == 'POST':
-		form = RecipeForm(request.POST)
+		form = RecipeForm(request.POST, request.FILES)
 
-	if form.is_valid():
-		recipe = form.save(commit=False)
-		return index(request)
-	else:
-		print(form.errors)
+        if form.is_valid():
+            Recipe = form.save(commit=False)
+            Recipe.save()
+            return index(request)
+        else:
+            print(form.errors)
 
 	return render(request, 'cookingMain/add_recipe.html', {'form': form})
 
