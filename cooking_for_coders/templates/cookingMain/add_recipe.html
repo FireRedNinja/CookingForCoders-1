@@ -67,7 +67,7 @@
 
     <hr>
     {% if user.is_authenticated %}
-        <form id="RecipeForm" method="post" align="center" action="/cfc/add_recipe/" enctype="multipart/form-data">
+        <form id="RecipeForm" method="post" action="/cfc/add_recipe/" enctype="multipart/form-data">
 				{% csrf_token %}
 					{% for hidden in form.hidden_fields %}
 						{{ hidden }}

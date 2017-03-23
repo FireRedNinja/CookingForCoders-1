@@ -43,7 +43,7 @@ class Recipe(models.Model):
     created = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(unique=True)
     category = models.ForeignKey(Category)
-    #user_created = models.ForeignKey(User)
+    author = models.CharField(max_length=128, unique=False, blank=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.recipeID)
