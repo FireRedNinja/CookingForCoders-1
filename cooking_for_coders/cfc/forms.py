@@ -18,7 +18,7 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         # Provide an association between the ModelForm and a model
         model = Recipe
-        fields = ('picture',)
+        fields = ('picture', 'title', 'ingredients', 'instructions', 'description', 'category')
 
         # What fields do we want to include in our form?
         # This way we dont need every field in the model present

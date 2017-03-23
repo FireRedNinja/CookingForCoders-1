@@ -64,20 +64,25 @@ def show_category(request, category_title_slug):
         context_dict['category_list'] = None
     return render(request, 'cookingMain/category.html', context_dict)
 
-
+@login_required
 def add_recipe(request):
-    form = RecipeForm()
+	# try:
+	# 	category = Category.objects.get(slug=category_title_slug)
+	# except Category.DoesNotExist:
+	# 	category = None
 
-    if request.method == 'POST':
-        form = RecipeForm(request.POST)
+	form = RecipeForm()
 
-        if form.is_valid():
-            form.save(commit=False)
-            return index(request)
-        else:
-            print(form.errors)
+	if request.method == 'POST':
+		form = RecipeForm(request.POST)
 
-    return render(request, 'cookingMain/add_recipe.html', {'form': form})
+	if form.is_valid():
+		recipe = form.save(commit=False)
+		return index(request)
+	else:
+		print(form.errors)
+
+	return render(request, 'cookingMain/add_recipe.html', {'form': form})
 
 
 def splash(request):

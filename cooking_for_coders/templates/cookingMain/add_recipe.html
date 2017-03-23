@@ -72,33 +72,11 @@
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
-
-            {{ form.non_field_errors }}
-            <div class="fieldWrapper">
-                {{ form.title.errors }}
-                <label for="{{ form.title.id_for_label }}">Title:</label>
-                {{ form.title }}
-            </div>
-            <div class="fieldWrapper">
-                {{ form.ingredients.errors }}
-                <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label>
-                {{ form.ingredients }}
-            </div>
-            <div class="fieldWrapper">
-                {{ form.instructions.errors }}
-                <label for="{{ form.instructions.id_for_label }}">Instructions:</label>
-                {{ form.instructions }}
-            </div>
-            <div class="fieldWrapper">
-                {{ form.description.errors }}
-                <label for="{{ form.description.id_for_label }}">Description:</label>
-                {{ form.description }}
-            </div>
-            <div class="fieldWrapper">
-                {{ form.category.errors }}
-                <label for="{{ form.category.id_for_label }}">Category:</label>
-                {{ form.category }}
-            </div>
+            {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }} <br>
+            {{ field }}
+            {% endfor %}
             <input type="submit" name="submit" value="Create Recipe" />
     </form>
     <br>
