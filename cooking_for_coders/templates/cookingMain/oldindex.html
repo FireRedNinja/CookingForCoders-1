@@ -155,7 +155,132 @@
 
     <hr>
 
+<!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="/cfc/category/vegetarian/"><h3>Vegetarian Recipes</h3></a>
+        </div>
+    </div>
+    <!-- /.row -->
+  <hr>
+    <!-- Page Features -->
+    <div class="row text-center">
+        {% if veg_recipes %} {% for recipe in veg_recipes %}
 
+        <a href="/cfc/recipe/{{ recipe.recipeID }}">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
+                    <div class="caption">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %} {% else %}
+        <a href="#">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature Label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {% endif %}
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+<!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="/cfc/category/Snack/"><h3>Snacks</h3></a>
+        </div>
+    </div>
+    <!-- /.row -->
+  <hr>
+    <!-- Page Features -->
+    <div class="row text-center">
+        {% if snack_recipes %} {% for recipe in snack_recipes %}
+
+        <a href="/cfc/recipe/{{ recipe.recipeID }}">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
+                    <div class="caption">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %} {% else %}
+        <a href="#">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature Label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {% endif %}
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+<!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="/cfc/category/dessert/"><h3>Dessert Recipes</h3></a>
+        </div>
+    </div>
+    <!-- /.row -->
+  <hr>
+    <!-- Page Features -->
+    <div class="row text-center">
+        {% if dessert_recipes %} {% for recipe in dessert_recipes %}
+
+        <a href="/cfc/recipe/{{ recipe.recipeID }}">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}{{ recipe.picture }}" alt="">
+                    <div class="caption">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %} {% else %}
+        <a href="#">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature Label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {% endif %}
+
+    </div>
+    <!-- /.row -->
 
     <hr>
 </div>

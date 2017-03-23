@@ -21,7 +21,7 @@ def index(request):
         top_recipes = Recipe.objects.order_by('-rating')[:4]
         newest_recipes = Recipe.objects.order_by('-created')[:4]
         veg_recipes = Recipe.objects.filter(category__id=2)[:4]
-        lunch_recipes = Recipe.objects.filter(category__id=1)[:4]
+        snack_recipes = Recipe.objects.filter(category__id=1)[:4]
         dessert_recipes = Recipe.objects.filter(category__id=3)[:4]
         category_list = Category.objects.order_by('title')
         # # top 4 rated (can't do rn)
@@ -29,7 +29,7 @@ def index(request):
         context_dict['top_recipes'] =  top_recipes
         context_dict['newest_recipes'] = newest_recipes
         context_dict['veg_recipes'] = veg_recipes
-        context_dict['lunch_recipes'] = lunch_recipes
+        context_dict['snack_recipes'] = snack_recipes
         context_dict['dessert_recipes'] = dessert_recipes
         context_dict['category_list'] = category_list
 
