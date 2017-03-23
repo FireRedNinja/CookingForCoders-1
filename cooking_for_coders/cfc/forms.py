@@ -13,7 +13,7 @@ class RecipeForm(forms.ModelForm):
     rating = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     created = forms.DateTimeField(widget=forms.HiddenInput(), initial=timezone.now)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
-    category = forms.ModelChoiceField(queryset=Category.objects.all().order_by('name'))
+    category = forms.ModelChoiceField(queryset=Category.objects.all().order_by('title'))
 
     class Meta:
         # Provide an association between the ModelForm and a model
