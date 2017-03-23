@@ -8,8 +8,7 @@ from django.template.defaultfilters import slugify
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    accountID = models.IntegerField(unique=True, blank=False)
-    name = models.CharField(blank=False, max_length=128, unique=False)
+    accountID = models.AutoField(primary_key=True)
     profile_picture = models.ImageField(upload_to='static/images/profile_pictures', default="static/images/default.jpg")
     my_recipes = models.CharField(default=0, blank=True, max_length=128)
     saved_recipes = models.CharField(default=0, blank=True, max_length=128)
@@ -35,7 +34,7 @@ class Category(models.Model):
 
 class Recipe(models.Model):
     title = models.CharField(default="Recipe", blank=False, max_length=128)
-    recipeID = models.IntegerField(blank=False)
+    recipeID = models.AutoField(primary_key=True)
     ingredients = models.TextField(default="Put your ingredients here!", blank=False)
     instructions = models.TextField(default="Type your instructions here!", blank=False)
     description = models.CharField(default="Put a short description here!", max_length=64, blank=False)

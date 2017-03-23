@@ -36,7 +36,7 @@ def index(request):
 
 def recipe(request, recipe_id):
     try:
-        recipe = Recipe.objects.get(id=recipe_id)
+        recipe = Recipe.objects.get(recipeID=recipe_id)
     except Recipe.DoesNotExist:
         recipe = None
     return render(request, 'cookingMain/recipe.html', {'recipe':recipe})
