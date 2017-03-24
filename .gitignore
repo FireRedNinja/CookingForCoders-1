@@ -6,3 +6,5 @@ gen
 db.sqlite3
 *.pyc
 
+
+cooking_for_coders/cfc/migrations/
