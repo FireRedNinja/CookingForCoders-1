@@ -28,7 +28,8 @@ class Recipe(models.Model):
     instructions = models.TextField(default="Type your instructions here!", blank=False)
     description = models.CharField(default="Put a short description here!", max_length=64, blank=False)
     picture = models.ImageField(upload_to='recipe/', blank=False)
-
+    rating = models.IntegerField(default=0, blank=True)
+    # rating_count = models.IntegerField(default=0, blank=True)
     created = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(unique=False)
     category = models.ForeignKey(Category)
@@ -44,18 +45,18 @@ class Recipe(models.Model):
 
 
 class StoredRecipe(models.Model):
-    recipe = models.ForeignKey(Recipe, verbose_name='recipe')
-    user = models.ForeignKey(User, verbose_name='user')
+    recipe = models.ForeignKey(Recipe)
+    user = models.ForeignKey(User)
 
     def __str__(self):
         return self.recipe.title
-
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     accountID = models.AutoField(primary_key=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
+    # savedrecipes = models.ForeignKey(SavedRecipe, blank=True)
 
     def __str__(self):
         return self.user.username
