@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cfc.models import Recipe, Category, UserProfile
+from cfc.models import Recipe, Category, UserProfile, StoredRecipe
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -13,6 +13,7 @@ class RecipeAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(Recipe)
 admin.site.register(UserProfile)
+admin.site.register(StoredRecipe)
 
 
 # Register your models here.

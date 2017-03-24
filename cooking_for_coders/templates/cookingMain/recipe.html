@@ -94,7 +94,7 @@
                             <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.rating }}/5</h1>
                             <span><b>recipe by {{recipe.author}}</b></span>
                             {% if user.is_authenticated %}
-                                <button class="btn btn-primary btn-sm" id="recipe-store">Save</button>
+                                <a href="{% url 'recipe_store' recipe.recipeID %}">Save</a>
 
                                 Rate
 

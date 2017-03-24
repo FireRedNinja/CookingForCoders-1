@@ -130,8 +130,8 @@ def profile(request, username):
     form = UserProfileForm({'picture': userprofile.picture})
 
     try:
-        stored_list = StoredRecipe.objects.filter(user=request.user.id)
-        context_dict['recipes_saved'] = stored_list
+        stored_list = StoredRecipe.objects.filter(user=user)
+        stored_recipes = Recipe.objects.filter()
     except Recipe.DoesNotExist:
         context_dict['recipes_saved'] = None
 
@@ -149,7 +149,7 @@ def profile(request, username):
         else:
             print(form.errors)
 
-    context_dict = {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'my_recipes':my_recipes}
+    context_dict = {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'my_recipes':my_recipes, 'recipes_saved':stored_list}
 
     return render(request, 'cookingMain/profile.html', context_dict)
 
@@ -162,19 +162,19 @@ def profile(request, username):
 
 
 @login_required
-def recipeStore(request, object_id):
+def recipeStore(request, recipe_id):
     """Take the recipe id and the user id passed via the url check that the recipe is not
        already stored for that user then store it if it is
     """
-    stored = StoredRecipe.objects.filter(recipe=object_id, user=request.user.id)
+    stored = StoredRecipe.objects.filter(recipe=recipe_id, user=request.user.id)
     if stored:
-        output = _("Recipe already in your favorites!")
+        output = ("Recipe already in your favorites!")
         return HttpResponse(output)
     else:  # save the recipe
-        r = get_object_or_404(Recipe, pk=object_id)
+        r = get_object_or_404(Recipe, pk=recipe_id)
         new_store = StoredRecipe(recipe=r, user=request.user)
         new_store.save()
-        output = _("Recipe added to your favorites!")
+        output = ("Recipe added to your favorites!")
         return HttpResponse(output)
 
 
