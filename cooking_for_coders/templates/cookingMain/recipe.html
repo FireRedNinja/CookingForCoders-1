@@ -91,14 +91,14 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                         <div class="section-heading">
-                            <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.rating }}/5</h1>
+                            <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.averageRating }}/5</h1>
                             <span><b>recipe by {{recipe.author}}</b></span>
                             {% if user.is_authenticated %}
                                 <a href="{% url 'recipe_store' recipe.recipeID %}">Save</a>
 
                                 Rate
-
-                                <select name="dropdown"> <!-- now hidden -->
+                                
+                                <select name="dropdown" onclick="sendRating(this.value)"> <!-- now hidden -->
                                     <option selected="selected" disabled>Rating:</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -107,14 +107,12 @@
                                     <option value="5">5</option>
                                 </select>
 
-
-
-
                             {% endif %}
 
-
-
+                        
                         </div>
+                        <p id="ratingsSaved"></p>
+                        <br>
                         <p>{{ recipe.description }}</p>
 
                         
@@ -135,6 +133,30 @@
         
 
         <hr>
+
+
+        <script>
+            function sendRating(rate) {
+                if (rate == 'Rating:') {
+                    return;
+                }
+                else {
+                    document.getElementById("ratingsSaved").innerHTML = "You have rated " + rate;
+                    $.post("", rate, "success") 
+                }
+                
+            }
+        </script>
+<!--
+         <script type="text/javascript">
+            $(document).ready(function () {
+              $(".{{ recipe.slug }}-rate").stars({
+               inputType:"select", disabled:true
+              });
+              $(".{{ recipe.slug }}-rate").stars("selectID", selectid); //set the select value to the avg rate
+            });
+          </script>
+-->
 
 
 {% endblock %}

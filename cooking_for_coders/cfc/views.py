@@ -19,7 +19,7 @@ def index(request):
 
     try:
         # request.session.set_test_cookie()
-        top_recipes = Recipe.objects.order_by('-rating')[:4]
+        top_recipes = Recipe.objects.order_by('-averageRating')[:4]
         newest_recipes = Recipe.objects.order_by('-created')[:4]
         veg_recipes = Recipe.objects.filter(category__id=2)[:4]
         snack_recipes = Recipe.objects.filter(category__id=1)[:4]
@@ -49,7 +49,7 @@ def recipe(request, recipe_id):
         recipe = Recipe.objects.get(recipeID=recipe_id)
     except Recipe.DoesNotExist:
         recipe = None
-    return render(request, 'cookingMain/recipe.html', {'recipe':recipe})
+    return render(request, 'cookingMain/recipe.html', {'recipe':recipe, 'recipeID':recipe_id})
 
 
 def show_category(request, category_title_slug):
@@ -154,11 +154,13 @@ def profile(request, username):
     return render(request, 'cookingMain/profile.html', context_dict)
 
 
-# @login_required
-# def add_rating(request):
-#     added_rating = request.GET['dropdown']
-#
-#     return HttpResponse("Rating Submitted")
+@login_required
+def add_rating(request):
+    if request.method == 'POST':
+        rating = request.rate
+        rating.save()
+        print rating
+    return HttpResponse("Rating Submitted")
 
 
 @login_required
