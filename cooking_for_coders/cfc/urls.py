@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^register_profile/$', views.register_profile, name='register_profile'),
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
     url(r'^recipe/(?P<recipe_id>[\w\-]+)/recipeStore/$', views.recipeStore, name='recipe_store'),
-    url(r'^unstore/$', views.recipeUnStore, name='recipe_unstore'),
+    url(r'^add_rating/$', views.add_rating, name='add_rating'),
 
 
 ]

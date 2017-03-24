@@ -94,18 +94,13 @@
                         
                             <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.rating }}/5</h1>
 
-                        <div class="section-heading">
-                            <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.averageRating }}/5</h1>
 
                             <span><b>recipe by {{recipe.author}}</b></span>
                             {% if user.is_authenticated %}
 
 								<br>
-								<form id="rating_form" method="post" action="/cfc/recipe/">
-									{% csrf_token %}
-									{{ rating_form.as_p }}
-									<input type="submit" name="submit" value="Submit Rating" class="btn btn-default" />
-                                </form>
+                                {% block rating %}
+                                {% endblock %}
 
                                 <a id="send_save" onclick="sendSave()"  class="btn btn-default" href="{% url 'recipe_store' recipe.recipeID %}">Save</a>
 
@@ -113,8 +108,7 @@
 
                             {% endif %}
 
-                        
-                        </div>
+
                         <p id="ratingsSaved"></p>
                         <br>
 

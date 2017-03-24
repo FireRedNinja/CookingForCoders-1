@@ -20,7 +20,7 @@ def index(request):
 
     try:
         # request.session.set_test_cookie()
-        top_recipes = Recipe.objects.order_by('-averageRating')[:4]
+        top_recipes = Recipe.objects.order_by('-rating')[:4]
         newest_recipes = Recipe.objects.order_by('-created')[:4]
         veg_recipes = Recipe.objects.filter(category__id=2)[:4]
         snack_recipes = Recipe.objects.filter(category__id=1)[:4]
@@ -50,10 +50,7 @@ def recipe(request, recipe_id):
     try:
         recipe = Recipe.objects.get(recipeID=recipe_id)
         context_dict['recipe'] = recipe
-        form = RatingForm()
-        context_dict['rating_form'] = form
-        if request.method == 'POST':
-            form = RatingForm(request.POST)
+
 
     except Recipe.DoesNotExist:
         recipe = None
@@ -99,6 +96,21 @@ def add_recipe(request):
             print(form.errors)
 
 	return render(request, 'cookingMain/add_recipe.html', {'form': form})
+
+
+def add_rating(request, recipe_id):
+
+    context_dict = {}
+    form = RatingForm()
+    context_dict['rating_form'] = form
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            Recipe = form.save(commit=False)
+            Recipe.save()
+            return recipe(request, recipe_id)
+        else:
+            print(form.errors)
 
 
 def splash(request):
@@ -165,14 +177,6 @@ def profile(request, username):
     return render(request, 'cookingMain/profile.html', context_dict)
 
 
-@login_required
-def add_rating(request):
-    if request.method == 'POST':
-        rating = request.rate
-        rating.save()
-        print rating
-    return HttpResponse("Rating Submitted")
-
 
 @login_required
 def recipeStore(request, recipe_id):
@@ -191,19 +195,6 @@ def recipeStore(request, recipe_id):
         return HttpResponse(output)
 
 
-@login_required
-def recipeUnStore(request):
-    """Take the recipe id via the url check that the recipe is not already
-       stored for that user then remove it if it is
-    """
-    if request.method == 'POST':
-        if request.POST['recipeID']:
-            try:
-                stored_recipe = StoredRecipe.objects.get(recipe=request.POST['recipeID'], user=request.user.id)
-            except StoredRecipe.DoesNotExist:
-                raise Http404
-            stored_recipe.delete()
-            return redirect('/recipe/ajax-favrecipe/')
 
 
 

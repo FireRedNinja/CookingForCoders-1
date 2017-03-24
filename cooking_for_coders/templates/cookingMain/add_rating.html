@@ -1,0 +1,10 @@
+{% extends "cookingMain/base.html" %}
+{% load staticfiles %}
+
+{% block rating %}
+    <form id="rating_form" method="post" action="/cfc/add_rating/" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ rating_form.as_p }}
+        <input type="submit" name="submit" value="Submit Rating" class="btn btn-default" />
+    </form>
+{% endblock %}
