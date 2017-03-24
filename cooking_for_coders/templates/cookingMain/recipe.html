@@ -90,11 +90,17 @@
 
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<<<<<<< HEAD
                         
                             <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.rating }}/5</h1>
+=======
+                        <div class="section-heading">
+                            <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.averageRating }}/5</h1>
+>>>>>>> 29679331006fc9cbe7a2968515eb9c07bbe52b38
                             <span><b>recipe by {{recipe.author}}</b></span>
                             {% if user.is_authenticated %}
 
+<<<<<<< HEAD
 								<br>
 								<form id="rating_form" method="post" action="/cfc/recipe/">
 									{% csrf_token %}
@@ -106,15 +112,31 @@
 
 
 
-
-
-
+=======
+                                Rate
+                                
+                                <select name="dropdown" onclick="sendRating(this.value)"> <!-- now hidden -->
+                                    <option selected="selected" disabled>Rating:</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+>>>>>>> 29679331006fc9cbe7a2968515eb9c07bbe52b38
 
                             {% endif %}
 
+<<<<<<< HEAD
 
 
                     
+=======
+                        
+                        </div>
+                        <p id="ratingsSaved"></p>
+                        <br>
+>>>>>>> 29679331006fc9cbe7a2968515eb9c07bbe52b38
                         <p>{{ recipe.description }}</p>
 
                         
@@ -136,6 +158,34 @@
 
         <hr>
 
+<<<<<<< HEAD
+=======
+
+        <script>
+            function sendRating(rate) {
+                if (rate == 'Rating:') {
+                    return;
+                }
+                else {
+                    document.getElementById("ratingsSaved").innerHTML = "You have rated " + rate;
+                    $.post("", rate, "success") 
+                }
+                
+            }
+        </script>
+<!--
+         <script type="text/javascript">
+            $(document).ready(function () {
+              $(".{{ recipe.slug }}-rate").stars({
+               inputType:"select", disabled:true
+              });
+              $(".{{ recipe.slug }}-rate").stars("selectID", selectid); //set the select value to the avg rate
+            });
+          </script>
+-->
+
+
+>>>>>>> 29679331006fc9cbe7a2968515eb9c07bbe52b38
 {% endblock %}
 
 

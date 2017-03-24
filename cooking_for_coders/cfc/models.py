@@ -7,18 +7,18 @@ from django.template.defaultfilters import slugify
 
 
 class Category(models.Model):
-    title = models.CharField(blank=False, max_length=128, unique=True)
-    slug = models.SlugField(unique=True)
+	title = models.CharField(blank=False, max_length=128, unique=True)
+	slug = models.SlugField(unique=True)
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super(Category, self).save(*args, **kwargs)
+	def save(self, *args, **kwargs):
+		self.slug = slugify(self.title)
+		super(Category, self).save(*args, **kwargs)
 
-    class Meta:
-        verbose_name_plural = 'Categories'
+	class Meta:
+		verbose_name_plural = 'Categories'
 
-    def __str__(self):
-        return self.title
+	def __str__(self):
+		return self.title
 
 
 class Recipe(models.Model):
@@ -56,21 +56,15 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     accountID = models.AutoField(primary_key=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    # savedrecipes = models.ForeignKey(SavedRecipe, blank=True)
 
     def __str__(self):
         return self.user.username
 
 
+class RateRecipe(models.Model):
+	recipe = models.ForeignKey(Recipe)
+	user = models.OneToOneField(User)
+	rating = models.IntegerField(blank=True)
 
-
-
-
-
-
-
-
-
-
-
-    
+	def __str__(self):
+		return self.rating
