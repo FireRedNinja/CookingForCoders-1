@@ -6,17 +6,6 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    accountID = models.AutoField(primary_key=True)
-    picture = models.ImageField(upload_to='profile_images', blank=True)
-    my_recipes = models.CharField(default=0, blank=True, max_length=128)
-    saved_recipes = models.CharField(default=0, blank=True, max_length=128)
-
-    def __str__(self):
-        return self.user.username
-
-
 class Category(models.Model):
     title = models.CharField(blank=False, max_length=128, unique=True)
     slug = models.SlugField(unique=True)
@@ -38,7 +27,7 @@ class Recipe(models.Model):
     ingredients = models.TextField(default="Put your ingredients here!", blank=False)
     instructions = models.TextField(default="Type your instructions here!", blank=False)
     description = models.CharField(default="Put a short description here!", max_length=64, blank=False)
-    picture = models.ImageField(upload_to='media/recipe/', blank=False)
+    picture = models.ImageField(upload_to='recipe/', blank=False)
     rating = models.IntegerField(default=0, blank=True)
     created = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(unique=True)
@@ -56,11 +45,29 @@ class Recipe(models.Model):
 
 class SavedRecipe(models.Model):
     recipe = models.ForeignKey(Recipe)
-    user = models.ForeignKey(UserProfile)
-
+    user = models.CharField(max_length=128, unique=False, blank=True)
 
     def __str__(self):
         return self.recipe
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    accountID = models.AutoField(primary_key=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+    # savedrecipes = models.ForeignKey(SavedRecipe, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+
+
+
+
+
+
+
+
 
 
 

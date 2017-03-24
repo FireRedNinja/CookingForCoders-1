@@ -8,7 +8,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
-from cfc.models import Recipe, UserProfile, Category
+from cfc.models import Recipe, UserProfile, Category, SavedRecipe
 from cfc.forms import UserForm, UserProfileForm, RecipeForm
 
 
@@ -129,6 +129,12 @@ def profile(request, username):
     form = UserProfileForm({'picture': userprofile.picture})
 
     try:
+        recipes_saved = SavedRecipe.objects.filter(user=username)
+        context_dict['recipes_saved'] = recipes_saved
+    except Recipe.DoesNotExist:
+        context_dict['recipes_saved'] = None
+
+    try:
         my_recipes = Recipe.objects.filter(author=username)
     except Recipe.DoesNotExist:
         context_dict['my_recipes'] = None
@@ -147,12 +153,36 @@ def profile(request, username):
     return render(request, 'cookingMain/profile.html', context_dict)
 
 
+# @login_required
+# def add_rating(request):
+#     added_rating = request.GET['dropdown']
+#
+#     return HttpResponse("Rating Submitted")
+
+
+# @login_required
+# def save_recipe(request, username):
+#     rec_id = None
+#     try:
+#         user = User.objects.get(username=username)
+#     except User.DoesNotExist:
+#         return redirect('index')
+#
+#     if request.method == 'GET':
+#         rec_id = request.GET['recipeID']
+#         saved = ''
+#     if rec_id:
+#         rec = Recipe.objects.get(id=int(rec_id))
+#         if rec:
+#             saved = UserProfile.savedrecipes + rec
+#             UserProfile.savedrecipes = saved
+#             UserProfile.save()
+#     return HttpResponse(saved)
+
+
 def trendingRecipies(request):
     top_recipes = Recipe.objects.order_by('-rating')[:10]
     # trending recipes (can't do rn)
     return render(request, 'cookingMain/trendingRecipes.html', {})
 
-
-def savedRecipies(request):
-    return render(request, 'cookingMain/savedRecipes.html', {})
 
