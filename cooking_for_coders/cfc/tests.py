@@ -23,19 +23,8 @@ def add_recipe(title, picture, description, ingredients, instructions):
 	r.save()
 	return r
 
-class RecipeMethodTests(TestCase):
-	def test_positive(self):
-		"""
-		ensure_views_are_positive should results True for categories
-		where views are zero or positive
-		"""
-		cat = Category(name='test',views=-1, likes=0)
-		cat.save()
-		self.assertEqual((cat.views >= 0), True)
-
 class RegisterTest(TestCase):
-
-
+	
 ## does login adn register only appear when not logged in
 ## does createrecipe adn profile only apear when logged in
 ##
