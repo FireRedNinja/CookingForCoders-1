@@ -30,7 +30,7 @@ class Recipe(models.Model):
     picture = models.ImageField(upload_to='recipe/', blank=False)
     rating = models.IntegerField(default=0, blank=True)
     created = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=False)
     category = models.ForeignKey(Category)
     author = models.CharField(max_length=128, unique=False, blank=False)
 
