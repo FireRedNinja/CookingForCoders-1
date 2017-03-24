@@ -5,9 +5,17 @@
     <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/stylish-portfolio.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/recipe.css' %}" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
 {% endblock %}
     {% block title %}{{ recipe.title }}{% endblock %}
 {% block body %}
+    <div class="alert alert-info" style="display:none;"></div>
 
     <!-- Navigation -->
     <nav class="navbar-inverse navbar-fixed-bottom">
@@ -86,8 +94,8 @@
                             <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.rating }}/5</h1>
                             <span><b>recipe by {{recipe.author}}</b></span>
                             {% if user.is_authenticated %}
-                                <button id="save" data-recid="{{recipe.recipeID}}" class="btn btn-primary btn-sm" type="button"> Save
-                                </button>
+                                <button class="btn btn-primary btn-sm" id="recipe-store">Save</button>
+
                                 Rate
 
                                 <select name="dropdown"> <!-- now hidden -->

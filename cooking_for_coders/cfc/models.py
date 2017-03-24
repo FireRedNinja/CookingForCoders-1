@@ -43,19 +43,19 @@ class Recipe(models.Model):
         return self.title
 
 
-class SavedRecipe(models.Model):
-    recipe = models.ForeignKey(Recipe)
-    user = models.CharField(max_length=128, unique=False, blank=True)
+class StoredRecipe(models.Model):
+    recipe = models.ForeignKey(Recipe, verbose_name='recipe')
+    user = models.ForeignKey(User, verbose_name='user')
 
     def __str__(self):
-        return self.recipe
+        return self.recipe.title
+
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     accountID = models.AutoField(primary_key=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    # savedrecipes = models.ForeignKey(SavedRecipe, blank=True)
 
     def __str__(self):
         return self.user.username

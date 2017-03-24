@@ -1,9 +1,10 @@
 /**
  * Created by jonathansaje on 24/03/2017.
  */
-$('#').click(function(){ var catid;
-catid = $(this).attr("data-catid");
-$.get('/rango/like/', {category_id: catid}, function(data){
-        $('#like_count').html(data);
-            $('#likes').hide();
-}); });
+
+
+$('#recipe-store').click(function() {
+    $.post('/store/{{ recipe.id }}/', function(data) {
+        $('div.alert-info').html(data).fadeIn(600).delay(3000).fadeOut(900);
+    });
+});

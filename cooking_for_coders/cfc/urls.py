@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^add_recipe/$', views.add_recipe, name='add_recipe'),
     url(r'^register_profile/$', views.register_profile, name='register_profile'),
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
+    url(r'^store/(?P<object_id>\d+)/$', views.recipeStore, name='recipe_store'),
+    url(r'^unstore/$', views.recipeUnStore, name='recipe_unstore'),
 
 
 ]
