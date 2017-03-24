@@ -5,9 +5,17 @@
     <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/stylish-portfolio.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/recipe.css' %}" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
 {% endblock %}
     {% block title %}{{ recipe.title }}{% endblock %}
 {% block body %}
+    <div class="alert alert-info" style="display:none;"></div>
 
     <!-- Navigation -->
     <nav class="navbar-inverse navbar-fixed-bottom">
@@ -86,12 +94,27 @@
                             <h1 class="section-heading">{{ recipe.title }}&nbsp; &nbsp;&nbsp; &nbsp; {{ recipe.rating }}/5</h1>
                             <span><b>recipe by {{recipe.author}}</b></span>
                             {% if user.is_authenticated %}
+<<<<<<< HEAD
 								<br>
 								<form id="rating_form" method="post" action="/cfc/recipe/">
 									{% csrf_token %}
 									{{ rating_form.as_p }}
 									<input type="submit" name="submit" value="Submit Rating" class="btn btn-default" />
                                 </form>
+=======
+                                <a href="{% url 'recipe_store' recipe.recipeID %}">Save</a>
+
+                                Rate
+
+                                <select name="dropdown"> <!-- now hidden -->
+                                    <option selected="selected" disabled>Rating:</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+>>>>>>> 231ac8cd6107e7aa5527653a61e375d1b5de2df9
 
 
 

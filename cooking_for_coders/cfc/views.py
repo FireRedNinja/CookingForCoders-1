@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from django.shortcuts import render, redirect
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from registration.backends.simple.views import RegistrationView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -8,8 +9,9 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
-from cfc.models import Recipe, UserProfile, Category, SavedRecipe
 from cfc.forms import UserForm, UserProfileForm, RecipeForm, RatingForm
+from cfc.models import Recipe, UserProfile, Category, StoredRecipe
+
 
 
 def index(request):
@@ -132,14 +134,14 @@ def profile(request, username):
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
-        return redirect('index')
+        return redirect('/accounts/register/')
 
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form = UserProfileForm({'picture': userprofile.picture})
 
     try:
-        recipes_saved = SavedRecipe.objects.filter(user=username)
-        context_dict['recipes_saved'] = recipes_saved
+        stored_list = StoredRecipe.objects.filter(user=user)
+        stored_recipes = Recipe.objects.filter()
     except Recipe.DoesNotExist:
         context_dict['recipes_saved'] = None
 
@@ -157,7 +159,7 @@ def profile(request, username):
         else:
             print(form.errors)
 
-    context_dict = {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'my_recipes':my_recipes}
+    context_dict = {'userprofile': userprofile, 'selecteduser': user, 'form': form, 'my_recipes':my_recipes, 'recipes_saved':stored_list}
 
     return render(request, 'cookingMain/profile.html', context_dict)
 
@@ -169,29 +171,36 @@ def profile(request, username):
 #     return HttpResponse("Rating Submitted")
 
 
-# @login_required
-# def save_recipe(request, username):
-#     rec_id = None
-#     try:
-#         user = User.objects.get(username=username)
-#     except User.DoesNotExist:
-#         return redirect('index')
-#
-#     if request.method == 'GET':
-#         rec_id = request.GET['recipeID']
-#         saved = ''
-#     if rec_id:
-#         rec = Recipe.objects.get(id=int(rec_id))
-#         if rec:
-#             saved = UserProfile.savedrecipes + rec
-#             UserProfile.savedrecipes = saved
-#             UserProfile.save()
-#     return HttpResponse(saved)
+@login_required
+def recipeStore(request, recipe_id):
+    """Take the recipe id and the user id passed via the url check that the recipe is not
+       already stored for that user then store it if it is
+    """
+    stored = StoredRecipe.objects.filter(recipe=recipe_id, user=request.user.id)
+    if stored:
+        output = ("Recipe already in your favorites!")
+        return HttpResponse(output)
+    else:  # save the recipe
+        r = get_object_or_404(Recipe, pk=recipe_id)
+        new_store = StoredRecipe(recipe=r, user=request.user)
+        new_store.save()
+        output = ("Recipe added to your favorites!")
+        return HttpResponse(output)
 
 
-def trendingRecipies(request):
-    top_recipes = Recipe.objects.order_by('-rating')[:10]
-    # trending recipes (can't do rn)
-    return render(request, 'cookingMain/trendingRecipes.html', {})
+@login_required
+def recipeUnStore(request):
+    """Take the recipe id via the url check that the recipe is not already
+       stored for that user then remove it if it is
+    """
+    if request.method == 'POST':
+        if request.POST['recipeID']:
+            try:
+                stored_recipe = StoredRecipe.objects.get(recipe=request.POST['recipeID'], user=request.user.id)
+            except StoredRecipe.DoesNotExist:
+                raise Http404
+            stored_recipe.delete()
+            return redirect('/recipe/ajax-favrecipe/')
+
 
 

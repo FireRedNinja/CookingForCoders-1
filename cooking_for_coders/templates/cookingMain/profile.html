@@ -90,20 +90,20 @@
 
             <!-- Page Features -->
         <div class="row text-center">
-            {% if top_recipes %} 
-            {% for recipe in top_recipes %}
+            {% if recipes_saved %}
+            {% for recipe in recipes_saved %}
 
-            <a href="/cfc/recipe/1">
-                <div class="col-md-3 col-sm-6 hero-feature">
-                    <div class="thumbnail">
-                        <img src="{{ MEDIA_URL }}pockets.jpeg" alt="">
-                        <div class="caption">
-                            <h3>Spicy Courgette Python Pockets</h3>
-                            <p>Moist pockets of juicy, spicy courgette</p>
-                        </div>
+            <a href="/cfc/recipe/{{ recipe.recipe.recipeID }}">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}{{ recipe.recipe.picture }}" alt="">
+                    <div class="caption">
+                        <h3>{{ recipe.recipe.title }}</h3>
+                        <p>{{ recipe.recipe.description }}</p>
                     </div>
                 </div>
-            </a>
+            </div>
+        </a>
             {% endfor %}
             {% else %}
             <a href="#">
