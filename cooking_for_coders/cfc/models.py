@@ -28,7 +28,7 @@ class Recipe(models.Model):
     instructions = models.TextField(default="Type your instructions here!", blank=False)
     description = models.CharField(default="Put a short description here!", max_length=64, blank=False)
     picture = models.ImageField(upload_to='recipe/', blank=False)
-    rating = models.IntegerField(default=0, blank=True)
+
     created = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(unique=False)
     category = models.ForeignKey(Category)

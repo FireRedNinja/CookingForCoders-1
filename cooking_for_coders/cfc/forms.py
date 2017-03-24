@@ -3,7 +3,7 @@ from cfc.models import Recipe, Category, UserProfile
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-
+# form for the creation of a recipe
 class RecipeForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Please enter the title of the Recipe.")
     recipeID = forms.IntegerField(widget=forms.HiddenInput(), required=False)
@@ -47,4 +47,6 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         exclude = ('user',)
 
-
+class RatingForm(forms.Form):
+    RATING_CHOICES = (("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5))
+    CurrentRating = forms.ChoiceField(choices=RATING_CHOICES, label="Rate")

@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 from cfc.models import Recipe, UserProfile, Category, SavedRecipe
-from cfc.forms import UserForm, UserProfileForm, RecipeForm
+from cfc.forms import UserForm, UserProfileForm, RecipeForm, RatingForm
 
 
 def index(request):
@@ -44,11 +44,20 @@ def index(request):
 
 
 def recipe(request, recipe_id):
+    context_dict = {}
     try:
         recipe = Recipe.objects.get(recipeID=recipe_id)
+        context_dict['recipe'] = recipe
+        form = RatingForm()
+        context_dict['rating_form'] = form
+        if request.method == 'POST':
+            form = RatingForm(request.POST)
+
     except Recipe.DoesNotExist:
         recipe = None
-    return render(request, 'cookingMain/recipe.html', {'recipe':recipe})
+
+
+    return render(request, 'cookingMain/recipe.html', context_dict)
 
 
 def show_category(request, category_title_slug):
