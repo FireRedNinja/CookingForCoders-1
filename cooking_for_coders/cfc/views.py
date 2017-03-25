@@ -99,7 +99,6 @@ def add_recipe(request):
 
 
 def add_rating(request, recipe_id):
-
     context_dict = {}
     form = RatingForm()
     context_dict['rating_form'] = form
